@@ -16,7 +16,7 @@ import {
 } from '@angular/router';
 import { NgReduxModule, NgRedux,  DevToolsExtension } from 'ng2-redux';
 import rootReducer from './store/app.reducers';
-import reduxLogger from 'redux-logger';
+import createLogger from 'redux-logger';
 import { ToolbarModule, ButtonModule, DataTableModule,
          SharedModule, GMapModule, DialogModule } from 'primeng/primeng';
 
@@ -29,15 +29,19 @@ import { ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
-import { HomeComponent } from './home';
+import { HomeComponent, Rwa } from './home';
+import { TableComponent, Table2Component, AddformComponent } from './home';
 import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
-import { XLargeDirective } from './home/x-large';
+// Main services & pipe
+import { WhmService } from './wh.service';
+import { OskyService } from './osky.service';
+import { BojaPipe, UzPipe } from './my.pipe';
 
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
-  AppState
+  AppState, WhmService, OskyService
 ];
 
 type StoreType = {
@@ -55,14 +59,17 @@ type StoreType = {
     AppComponent,
     AboutComponent,
     HomeComponent,
-    NoContentComponent,
-    XLargeDirective
+    TableComponent, Table2Component, AddformComponent,
+    BojaPipe, UzPipe, Rwa,
+    NoContentComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
-    FormsModule,
+    FormsModule, ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
+    NgReduxModule,
+    ToolbarModule, ButtonModule, DataTableModule, GMapModule, DialogModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
@@ -73,8 +80,14 @@ export class AppModule {
 
   constructor(
     public appRef: ApplicationRef,
-    public appState: AppState
-  ) {}
+    public appState: AppState,
+    private ngRedux: NgRedux<any>,
+    private devTool: DevToolsExtension
+  ) {
+          this.ngRedux.configureStore(rootReducer, {}, [ createLogger() ]
+//     , [ devTool.isEnabled() ? devTool.enhancer() : f => f]  //devTool Off
+      );
+    }
 
   public hmrOnInit(store: StoreType) {
     if (!store || !store.state) {

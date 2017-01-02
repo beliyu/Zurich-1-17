@@ -11,7 +11,7 @@
   "author": "Beli <beliyu@mail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/beliyu/zurich"
+    "url": "https://github.com/angularclass/angular2-webpack-starter.git"
   },
   "license": "MIT",
   "scripts": {
@@ -90,8 +90,8 @@
     "core-js": "^2.4.1",
     "http-server": "^0.9.0",
     "ie-shim": "^0.1.0",
-    "ng2-redux": "4.1.0",
-    "primeng": "1.0.1",
+    "ng2-redux": "5.0.0",
+    "primeng": "1.1.2",
     "redux": "3.6.0",
     "redux-logger": "2.7.4",
     "reflect-metadata": "^0.1.9",
@@ -100,6 +100,7 @@
   },
   "devDependencies": {
     "@angular/compiler-cli": "~2.4.1",
+    "@types/googlemaps": "^3.25.40",
     "@types/hammerjs": "^2.0.33",
     "@types/jasmine": "^2.2.34",
     "@types/node": "^6.0.38",
@@ -153,10 +154,6 @@
     "webpack-dev-server": "2.2.0-rc.0",
     "webpack-md5-hash": "^0.0.5",
     "webpack-merge": "~1.0.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/angularclass/angular2-webpack-starter.git"
   },
   "bugs": {
     "url": "https://github.com/angularclass/angular2-webpack-starter/issues"

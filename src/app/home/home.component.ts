@@ -1,43 +1,58 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { WhmService, WhModel } from '../wh.service';
+import { NgRedux, select } from 'ng2-redux';
+import { Observable } from 'rxjs/Observable';
+import '../../assets/css/styles.css';
 
 import { AppState } from '../app.service';
-import { Title } from './title';
-import { XLargeDirective } from './x-large';
 
 @Component({
-  // The selector is what angular internally uses
-  // for `document.querySelectorAll(selector)` in our index.html
-  // where, in this case, selector is the string 'home'
-  selector: 'home',  // <home></home>
-  // We need to tell Angular's Dependency Injection which providers are in our app.
-  providers: [
-    Title
-  ],
-  // Our list of styles in our component. We may add more to compose many styles together
+  selector: 'home',
+  providers: [ ],
   styleUrls: [ './home.component.css' ],
-  // Every Angular template is first compiled by the browser before Angular runs it's compiler
   templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
-  // Set our default values
-  public localState = { value: '' };
-  // TypeScript public modifiers
-  constructor(
-    public appState: AppState,
-    public title: Title
-  ) {}
+  public  WM= [] ;
+    @select('iime') public iime$: Observable<number>;
 
-  public ngOnInit() {
-    console.log('hello `Home` component');
-    // this.title.getData().subscribe(data => this.data = data);
+  constructor(private _whm: WhmService, private _ngRedux: NgRedux<any>) {  }
+
+public  ngOnInit() {
+  this.whmGetAll();
   }
 
-  public submitState(value: string) {
-    console.log('submitState', value);
-    this.appState.set('value', value);
-    this.localState.value = '';
+public whmGetAll() {
+    this._whm.getAll().subscribe((data) => {
+//      this.WM =[ ...data];
+      this._ngRedux.dispatch({ type: 'IIME_ALL', payload : data });
+    }, (err) => console.log(err));
+  }
+public whmTogg(w) {
+    this._whm.togg(w).subscribe((data) => {
+//        let wmx = [];
+//        this.WM.forEach(n => {
+//            wmx = (n.id!=w.id) ?  [...wmx, n] : [...wmx, data]
+//        })
+//        this.WM = wmx
+      this._ngRedux.dispatch({ type: 'IIME_TOGG', payload : data });
+    }, (err) => console.log(err));
+  }
+public whmAdd(a) {
+    let w = new WhModel(a.ime, a.grad);
+    this._whm.add(w).subscribe((data) => {
+//      this.WM=[...this.WM, data] ;
+      this._ngRedux.dispatch({ type: 'IIME_ADD', payload : data });
+    }, (err) => console.log(err));
+  }
+public whmDel(w) {
+    this._whm.del(w.id).subscribe((data) => {
+//        let wmx = [];
+//        this.WM.forEach(n => {if(n.id!=w.id) wmx = [...wmx, n]})
+//        this.WM = wmx
+      this._ngRedux.dispatch({ type: 'IIME_DEL', payload : w });
+    }, (err) => console.log(err));
   }
 }
+
+// in comment line is version without redux ..... 

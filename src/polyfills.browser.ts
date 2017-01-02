@@ -42,6 +42,6 @@ if ('production' === ENV) {
   // Development
   Error.stackTraceLimit = Infinity;
 
-  longStackTrace();
+//  longStackTrace();
 
 }
