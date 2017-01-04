@@ -1,7 +1,7 @@
 # Zurich app in early January 2017
 ## Dependencies
 In the meantime arrived modules ...
-* angular 2.4.1 - changes in the api > must use new vebpack and NG2-redux
+* angular 2.4.1 - changes in the api > must use new webpack and NG2-redux
 * webpack 2.2.0-rc.3, webpack-dev-server 2.2.0-rc.0 - transition from beta to RC
 * ng2-redux 5.0.0 - changes regarding the new angular and aot
     * Minimum Angular is now 2.4.0
