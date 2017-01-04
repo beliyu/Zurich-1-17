@@ -56,21 +56,15 @@
       "id": "22"
     },
     {
-      "ime": "Zoki25",
-      "grad": "Sinaj2",
-      "boja": "bl",
-      "id": "B1gJVueml"
-    },
-    {
       "ime": "Zokili",
       "grad": "Sicilija",
-      "boja": "bl",
+      "boja": "rd",
       "id": "Syg8cul7l"
     },
     {
       "ime": "Zoki",
       "grad": "Sinaj",
-      "boja": "rd",
+      "boja": "bl",
       "id": "SJUqwWj4e"
     },
     {
@@ -78,6 +72,18 @@
       "grad": "Sinaj147",
       "boja": "rd",
       "id": "Bk94YSurx"
+    },
+    {
+      "ime": "Zoki",
+      "grad": "Sinaj",
+      "boja": "bl",
+      "id": "d8a88a5a-4af2-4dab-b877-e68f4291ff09"
+    },
+    {
+      "ime": "Poki",
+      "grad": "Temisvar",
+      "boja": "bl",
+      "id": "d6fead4d-db74-4422-8db8-af734d0e8c3b"
     }
   ],
   "profile": {

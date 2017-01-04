@@ -5,7 +5,6 @@ import { Component, trigger, state, animate, transition } from '@angular/core';
 
 @Component({
   selector: 'table2-component',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   template: `
    
@@ -20,17 +19,17 @@ import { Component, trigger, state, animate, transition } from '@angular/core';
       <p-column field="grad" header="Grad" [sortable]="true"
            filterMatchMode="contains" [filter]="true" ></p-column>
       <p-column field="boja" [style]="{'width':'60px'}">
-        <template pTemplate type="header" >
+        <template pTemplate="header" >
             <span >Color</span>
         </template>
-        <template let-col let-rDat="rowData" pTemplate type="body">
+        <template let-col let-rDat="rowData" pTemplate="body" let-i="rowIndex">
             <button type="text" pButton (click)="buttBoja.emit(rDat)" 
                 [label]="rDat[col.field]" class="colButt">               
-            </button> 
+            </button>    
         </template>
       </p-column>  
       <p-column header="Del" [style]="{'width':'50px'}">
-        <template let-rDat="rowData" pTemplate type="body">
+        <template let-rDat="rowData" pTemplate="body">
             <button type="button" pButton class="delButt"
                  (click)="buttDel.emit(rDat)" icon="fa-remove">
             </button>
@@ -40,7 +39,7 @@ import { Component, trigger, state, animate, transition } from '@angular/core';
   </p-dataTable>
   `,
     styles: [`
-        .bl{color: black;}
+        .bl{color: blue;}
         .rd{color: red;}
     `]
 })
@@ -49,7 +48,7 @@ export class Table2Component {
 @Output() public buttBoja = new EventEmitter();
 @Output() public buttDel = new EventEmitter();
 
-// whButtBoja(e, w) {this.buttBoja.emit(w);}
+// public whButtBoja(w, i) {this.buttBoja.emit(w);}
 // whDel(e, w){this.buttDel.emit(w);}
 public wPro1(a, b) {
   return a.boja === 'bl' ? 'bl' : 'rd';
