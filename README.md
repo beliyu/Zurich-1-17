@@ -36,7 +36,7 @@ class AppModule {
 Although still Ver 5.1.1 - changed the entire infrastructure. Adding aot required new tools
 * new webpack has led to a completely new config folder
 * no more vendor.ts list
-* some webpack loders have been replaced with new one
+* some webpack loaders have been replaced with new one
 * in some modules still appear old (nonexistent) webpack 2.2.0-beta
 * yarn has become mandatory - mission impossible with npm !!!
 
