@@ -1,5 +1,5 @@
 {
-  "name": "wpAC-5-starter",
+  "name": "WpAC-5-starter-jan",
   "version": "5.1.1-2",
   "description": "An Angular 2 Webpack Starter kit featuring Angular 2 - Test 7",
   "keywords": [
@@ -12,7 +12,7 @@
   "author": "Beli <beliyu@mail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/beliyu/z-1-17"
+    "url": "https://github.com/beliyu/Zurich-1-17"
   },
   "license": "MIT",
   "scripts": {
